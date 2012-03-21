@@ -3,9 +3,12 @@ CC=gcc
 CC_FLAGS=-Wall
 
 
-all: server
+all: switchChar.o roombalib.o
 
 server: main.c roombalib
 
-roombalib: roombalib.c
+switchChar.o: switchChar.c roombalib.o
+	${CC} ${CC_FLAGS} -c switchChar.c
+
+roombalib.o: roombalib.c
 	${CC} ${CC_FLAGS} -c roombalib.c
