@@ -1,3 +1,7 @@
+#ifndef ROOMBALIB_H
+#define ROOMBALIB_H
+
+
 /*
  * roombalib -- Roomba C API
  *
@@ -116,3 +120,4 @@ void roomba_delay( int millisecs );
 #define motorover_driveright(b) ((b & 0x08)!=0) 
 #define motorover_driveleft(b)  ((b & 0x10)!=0) 
 
+#endif
