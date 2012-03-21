@@ -15,21 +15,19 @@ void Die(char *mess) { perror(mess); exit(1); }
 void HandleClient(Roomba* roomba_obj, int sock) {
   char buffer;
   int received = -1;
-  /* Receive message */
-  if ((received = recv(sock, &buffer, BUFFSIZE, 0)) < 0) {
-    Die("Failed to receive initial bytes from client");
+  
+  /* Send welcome message */
+    char* welcome = "Welcome to the roomba\n";
+  if (send(sock, welcome, strlen(welcome), 0) != strlen(welcome)) {
+    Die("Failed to deliver welcome message");
   }
-  /* Send bytes and check for more incoming data in loop */
-  while (received > 0) {
-    /* Send back received data */
-    if (send(sock, &buffer, received, 0) != received) {
-      Die("Failed to send bytes to client");
-    }
-    /* Check for more data */
+  
+  while (1) {
+    /* Check for next command */
     if ((received = recv(sock, &buffer, BUFFSIZE, 0)) < 0) {
       Die("Failed to receive additional bytes from client");
     }
-
+    
     switchChar(roomba_obj, buffer);
     
   }
