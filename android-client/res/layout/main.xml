@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+    android:layout_width="match_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
@@ -14,93 +14,119 @@
         <SurfaceView
             android:id="@+id/surface"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_weight="0.47" >
+            android:layout_height="match_parent"
+            android:layout_gravity="top"
+            android:layout_weight="0.4" >
         </SurfaceView>
 
-        <GridLayout
+        <TableLayout
             android:id="@+id/gridLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="0.07"
-            android:columnCount="2" >
+            android:layout_gravity="fill_horizontal"
+            android:columnCount="3"
+            android:orientation="horizontal"
+            android:paddingRight="2dip"
+            android:rowCount="3" >
 
-            <Button
-                android:id="@+id/upButton"
-                android:layout_column="0"
-                android:layout_columnSpan="2"
-                android:layout_gravity="center_horizontal"
-                android:layout_row="0"
-                android:onClick="upButtonListener"
-                android:text="@string/up" />
+            <TableRow>
 
-            <Button
-                android:id="@+id/leftButton"
-                android:layout_column="0"
-                android:layout_row="1"
-                android:layout_rowSpan="2"
-                android:onClick="leftButtonListener"
-                android:text="@string/left" />
+                <Space
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_weight="1" />
 
-            <Button
-                android:id="@+id/stopButton"
-                android:layout_column="1"
-                android:layout_gravity="left"
-                android:layout_row="1"
-                android:layout_rowSpan="2"
-                android:text="@string/stop" />
+                <Button
+                    android:id="@+id/forwardButton"
+                   
+                    android:layout_row="0"                    
+                    android:layout_weight="1"
+                    android:onClick="forwardButtonListener"
+                    android:text="@string/forward" />
 
-            <Button
-                android:id="@+id/rightButton"
-                android:layout_column="1"
-                android:layout_gravity="right"
-                android:layout_row="1"
-                android:layout_rowSpan="2"
-                android:onClick="rightButtonListener"
-                android:text="@string/right" />
+                <Space
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_weight="1" />
+            </TableRow>
 
-            <Button
-                android:id="@+id/downButton"
-                android:layout_column="1"
-                android:layout_gravity="bottom"
-                android:layout_row="2"
-                android:onClick="downButtonListener"
-                android:text="@string/down" />
+            <TableRow android:baselineAligned="false" >
 
-            <Space
-                android:layout_width="1dp"
-                android:layout_height="18dp"
-                android:layout_column="0"
-                android:layout_gravity="fill_horizontal"
-                android:layout_row="1" />
+                <Button
+                    android:id="@+id/spinLeftButton"
+                    android:layout_width="match_parent"
+                    android:layout_column="0"
+                    android:layout_columnSpan="1"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:layout_weight="1"
+                    android:onClick="spinLeftButtonListener"
+                    android:text="@string/spinleft" />
 
-            <Space
-                android:layout_width="125dp"
-                android:layout_height="1dp"
-                android:layout_column="0"
-                android:layout_row="0" />
-        </GridLayout>
+                <Button
+                    android:id="@+id/stopButton"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_row="1"
+                    android:layout_rowSpan="1"
+                    android:layout_weight="1"
+                    android:text="@string/stop" />
+
+                <Button
+                    android:id="@+id/spinRightButton"
+                    android:layout_column="2"
+                    android:layout_row="1"
+                    android:layout_weight="1"
+                    android:onClick="spinRightButtonListener"
+                    android:text="@string/spinright" />
+            </TableRow>
+
+            <TableRow>
+
+                <Space
+                    android:layout_column="0"
+                    android:layout_row="0"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/backwardButton"
+                    android:layout_column="1"
+                    android:layout_columnSpan="1"
+                    android:layout_row="2"
+                    android:layout_rowSpan="1"
+                    android:layout_weight="1"
+                    android:onClick="backwardButtonListener"
+                    android:text="@string/backward" />
+
+                <Space
+                    android:layout_column="2"
+                    android:layout_row="0"
+                    android:layout_weight="1" />
+            </TableRow>
+        </TableLayout>
 
         <LinearLayout
             android:id="@+id/linearLayout2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill" >
 
             <Button
                 android:id="@+id/pauseButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="pauseButtonListener"
                 android:text="@string/pause" />
 
             <Button
                 android:id="@+id/quitButton"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:onClick="quitButtonListener"
                 android:text="@string/quit" />
-            
         </LinearLayout>
     </LinearLayout>
 

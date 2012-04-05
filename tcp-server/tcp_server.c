@@ -27,7 +27,6 @@ void HandleClient(Roomba* roomba_obj, int sock) {
     if ((received = recv(sock, &buffer, BUFFSIZE, 0)) < 0) {
       Die("Failed to receive additional bytes from client");
     }
-    
     switchChar(roomba_obj, buffer);
     
   }
