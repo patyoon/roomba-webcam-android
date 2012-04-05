@@ -1,6 +1,6 @@
-*.o
-*.class
-*~
-*.apk
-android-client/bin/*
-server
+**/*.o
+**/*.class
+**/*~
+**/*.apk
+**/bin/*
+tcp_server/server
