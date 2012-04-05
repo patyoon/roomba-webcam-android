@@ -10,5 +10,8 @@
     <string name="down">Down</string>
     <string name="pause">Pause Video</string>
     <string name="stop">Stop</string>
+    <string name="ip">IP Address</string>
+    <string name="port">Port Number</string>
+    <string name="submit">Submit</string>
 
 </resources>

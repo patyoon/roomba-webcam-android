@@ -1,4 +1,6 @@
 *.o
 *.class
 *~
+*.apk
+android-client/bin/*
 server
