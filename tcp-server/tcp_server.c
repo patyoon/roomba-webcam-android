@@ -8,6 +8,7 @@
 #include "switchChar.h"
 #include "roombalib.h"
 #include <libfreenect_sync.h>
+#include <pthread.h>
 
 #define MAXPENDING 5    /* Max connection requests */
 #define BUFFSIZE 1
@@ -16,7 +17,10 @@ void Die(char *mess) {
   exit(1); 
 }
 
-void PerformCommands(Roomba* roomba_obj, int sock) {
+Roomba roomba_obj;
+int sock;
+
+void* PerformCommands(void*stuff) {
   char buffer;
   int received = -1;
   while (1) {
@@ -25,14 +29,14 @@ void PerformCommands(Roomba* roomba_obj, int sock) {
       Die("Failed to receive additional bytes from client");
     }
     
-    switchChar(roomba_obj, buffer);
+    switchChar(&roomba_obj, buffer);
   }
 }
 
 #define W 640
 #define H 480
 
-void SendVideo(int sock) {
+void* SendVideo(void*stuff) {
   while(1) {
     char* data;
     unsigned int timestamp;
@@ -44,14 +48,21 @@ void SendVideo(int sock) {
   }
 }
 
-void HandleClient(Roomba* roomba_obj, int sock) {
+void HandleClient() {
   /* Send welcome message */
   char* welcome = "Welcome to the roomba\n";
   if (send(sock, welcome, strlen(welcome), 0) != strlen(welcome)) {
     Die("Failed to deliver welcome message");
   }
   
+  pthread_t workers[2];
+  
+  pthread_create(&workers[0], NULL, PerformCommands, NULL);
+  pthread_create(&workers[1], NULL, SendVideo, NULL);
 
+  pthread_join(workers[0], NULL);
+  pthread_join(workers[1], NULL);
+  
 }
 
 int main(int argc, char *argv[]) {
