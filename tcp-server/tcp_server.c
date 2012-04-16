@@ -17,19 +17,19 @@ void Die(char *mess) {
   exit(1); 
 }
 
-Roomba roomba_obj;
-int sock;
+Roomba* roomba_obj;
+int clientsock;
 
 void* PerformCommands(void*stuff) {
   char buffer;
   int received = -1;
   while (1) {
     /* Check for next command */
-    if ((received = recv(sock, &buffer, BUFFSIZE, 0)) < 0) {
+    if ((received = recv(clientsock, &buffer, BUFFSIZE, 0)) < 0) {
       Die("Failed to receive additional bytes from client");
     }
     
-    switchChar(&roomba_obj, buffer);
+    switchChar(roomba_obj, buffer);
   }
 }
 
@@ -41,9 +41,17 @@ void* SendVideo(void*stuff) {
     char* data;
     unsigned int timestamp;
     freenect_sync_get_video((void**)(&data), &timestamp, 0, FREENECT_VIDEO_RGB);
-    int i;
+    int32_t i;
     for (i = 0; i < H; i += 1) {
       // send 3*W bytes of rgb data, offset by i * 3 * W
+      char* rowID = (char*)(&i);
+      if (send(clientsock, rowID, 4, 0) != 4) {
+	Die("Failed to deliver RGB header");
+      }
+      char* row = &data[i * 3 * W];
+      if (send(clientsock, row, 3*W, 0) != 3*W) {
+	Die("Failed to delivier RGB payload");
+      }
     }
   }
 }
@@ -51,7 +59,7 @@ void* SendVideo(void*stuff) {
 void HandleClient() {
   /* Send welcome message */
   char* welcome = "Welcome to the roomba\n";
-  if (send(sock, welcome, strlen(welcome), 0) != strlen(welcome)) {
+  if (send(clientsock, welcome, strlen(welcome), 0) != strlen(welcome)) {
     Die("Failed to deliver welcome message");
   }
   
@@ -66,7 +74,7 @@ void HandleClient() {
 }
 
 int main(int argc, char *argv[]) {
-  int serversock, clientsock;
+  int serversock;
   struct sockaddr_in echoserver, echoclient;
   
   if (argc != 3) {
@@ -76,7 +84,7 @@ int main(int argc, char *argv[]) {
   
   /* Create Roomba struct */
   
-  Roomba* roomba_obj = roomba_init(argv[2]);
+  roomba_obj = roomba_init(argv[2]);
   
   /* Create the TCP socket */
   if ((serversock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0) {
@@ -107,6 +115,6 @@ int main(int argc, char *argv[]) {
     }
     fprintf(stdout, "Client connected: %s\n",
             inet_ntoa(echoclient.sin_addr));
-    HandleClient(roomba_obj, clientsock);
+    HandleClient();
   }
 }
