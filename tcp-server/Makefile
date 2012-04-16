@@ -1,15 +1,16 @@
 
 CC=gcc
 CC_FLAGS=-Wall
-
+L=-lfreenect_sync
+I=-I/usr/local/include/libfreenect
 
 all: server
 
 server: tcp_server.o roombalib.o switchChar.o
-	${CC} ${CC_FLAGS} tcp_server.o roombalib.o switchChar.o -o server	
+	${CC} ${CC_FLAGS} ${I} tcp_server.o roombalib.o switchChar.o -o server ${L}
 
-server.o: tcp_server.c
-	${CC} ${CC_FLAGS} -c tcp_server.c
+tcp_server.o: tcp_server.c
+	${CC} ${CC_FLAGS} ${I} -c tcp_server.c ${L}
 
 switchChar.o: switchChar.c roombalib.o
 	${CC} ${CC_FLAGS} -c switchChar.c

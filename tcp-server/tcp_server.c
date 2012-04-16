@@ -7,21 +7,18 @@
 #include <netinet/in.h>
 #include "switchChar.h"
 #include "roombalib.h"
+#include <libfreenect_sync.h>
 
 #define MAXPENDING 5    /* Max connection requests */
 #define BUFFSIZE 1
-void Die(char *mess) { perror(mess); exit(1); }
+void Die(char *mess) { 
+  perror(mess); 
+  exit(1); 
+}
 
-void HandleClient(Roomba* roomba_obj, int sock) {
+void PerformCommands(Roomba* roomba_obj, int sock) {
   char buffer;
   int received = -1;
-  
-  /* Send welcome message */
-    char* welcome = "Welcome to the roomba\n";
-  if (send(sock, welcome, strlen(welcome), 0) != strlen(welcome)) {
-    Die("Failed to deliver welcome message");
-  }
-  
   while (1) {
     /* Check for next command */
     if ((received = recv(sock, &buffer, BUFFSIZE, 0)) < 0) {
@@ -29,24 +26,47 @@ void HandleClient(Roomba* roomba_obj, int sock) {
     }
     
     switchChar(roomba_obj, buffer);
-    
   }
-  close(sock);
+}
+
+#define W 640
+#define H 480
+
+void SendVideo(int sock) {
+  while(1) {
+    char* data;
+    unsigned int timestamp;
+    freenect_sync_get_video((void**)(&data), &timestamp, 0, FREENECT_VIDEO_RGB);
+    int i;
+    for (i = 0; i < H; i += 1) {
+      // send 3*W bytes of rgb data, offset by i * 3 * W
+    }
+  }
+}
+
+void HandleClient(Roomba* roomba_obj, int sock) {
+  /* Send welcome message */
+  char* welcome = "Welcome to the roomba\n";
+  if (send(sock, welcome, strlen(welcome), 0) != strlen(welcome)) {
+    Die("Failed to deliver welcome message");
+  }
+  
+
 }
 
 int main(int argc, char *argv[]) {
   int serversock, clientsock;
   struct sockaddr_in echoserver, echoclient;
-
+  
   if (argc != 3) {
     fprintf(stderr, "USAGE: echoserver <port> <serial_port>\n");
     exit(1);
   }
   
   /* Create Roomba struct */
-
+  
   Roomba* roomba_obj = roomba_init(argv[2]);
-
+  
   /* Create the TCP socket */
   if ((serversock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0) {
     Die("Failed to create socket");
