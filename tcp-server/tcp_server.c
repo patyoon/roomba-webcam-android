@@ -38,7 +38,7 @@ void* PerformCommands(void*stuff) {
 #define H 480
 
 void* SendVideo(void*stuff) {
-  printf("in send video");
+  printf("in send video\n");
   while(1) {
     char* data;
     unsigned int timestamp;
@@ -71,7 +71,7 @@ void HandleClient() {
   pthread_create(&workers[0], NULL, PerformCommands, NULL);
   pthread_join(workers[0], NULL);
 #endif
-
+  
 #ifdef MODE_VID
   pthread_create(&workers[1], NULL, SendVideo, NULL);
   pthread_join(workers[1], NULL);
@@ -89,9 +89,10 @@ int main(int argc, char *argv[]) {
   }
   
   /* Create Roomba struct */
-  
+#ifndef MODE_VID
   roomba_obj = roomba_init(argv[2]);
-  
+#endif
+
   /* Create the TCP socket */
   if ((serversock = socket(PF_INET, SOCK_STREAM, IPPROTO_TCP)) < 0) {
     Die("Failed to create socket");
