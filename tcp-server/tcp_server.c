@@ -10,6 +10,7 @@
 #include <libfreenect_sync.h>
 #include <pthread.h>
 
+
 #define MAXPENDING 5    /* Max connection requests */
 #define BUFFSIZE 1
 void Die(char *mess) { 
@@ -37,6 +38,7 @@ void* PerformCommands(void*stuff) {
 #define H 480
 
 void* SendVideo(void*stuff) {
+  printf("in send video");
   while(1) {
     char* data;
     unsigned int timestamp;
@@ -65,11 +67,15 @@ void HandleClient() {
   
   pthread_t workers[2];
   
+#ifdef MODE_COM  
   pthread_create(&workers[0], NULL, PerformCommands, NULL);
-  pthread_create(&workers[1], NULL, SendVideo, NULL);
-
   pthread_join(workers[0], NULL);
+#endif
+
+#ifdef MODE_VID
+  pthread_create(&workers[1], NULL, SendVideo, NULL);
   pthread_join(workers[1], NULL);
+#endif
   
 }
 
