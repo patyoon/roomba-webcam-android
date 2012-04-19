@@ -49,6 +49,7 @@
                 android:layout_gravity="left"
                 android:layout_row="1"
                 android:layout_rowSpan="2"
+                android:onClick="stopButtonListener"
                 android:text="@string/stop" />
 
             <Button

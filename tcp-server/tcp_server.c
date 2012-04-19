@@ -46,8 +46,13 @@ void* SendVideo(void*stuff) {
     int32_t i;
     for (i = 0; i < H; i += 1) {
       // send 3*W bytes of rgb data, offset by i * 3 * W
-      char* rowID = (char*)(&i);
-      if (send(clientsock, rowID, 4, 0) != 4) {
+      char* rowIdBuf = malloc(4 * sizeof(char));
+      int j;
+      char* rowId = (char*)&i;
+      for (j = 0; j < 4; j ++) {
+        rowIdBuf[3-j] = rowId[j];
+      }
+      if (send(clientsock, rowIdBuf, 4, 0) != 4) {
 	Die("Failed to deliver RGB header");
       }
       char* row = &data[i * 3 * W];
@@ -59,11 +64,15 @@ void* SendVideo(void*stuff) {
 }
 
 void HandleClient() {
+  
   /* Send welcome message */
+  
+  /*
   char* welcome = "Welcome to the roomba\n";
   if (send(clientsock, welcome, strlen(welcome), 0) != strlen(welcome)) {
     Die("Failed to deliver welcome message");
   }
+  */
   
   pthread_t workers[2];
   
