@@ -15,7 +15,6 @@ import android.view.View;
 
 public class Android_tcp_stream_testActivity extends Activity {
     
-	SendCommandTask sender;
 	Socket senderSocket;
 	Socket videoSocket;
 	
@@ -25,12 +24,10 @@ public class Android_tcp_stream_testActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        sender = new SendCommandTask();
-        /*
         SocketAddress addr1 = new InetSocketAddress("158.130.107.65", 8001);
         SocketOpenerTask1 opener1 = new SocketOpenerTask1(addr1);
         opener1.execute();
-        */
+        
         SocketAddress addr2 = new InetSocketAddress("158.130.107.65", 8002);
         SocketOpenerTask2 opener2 = new SocketOpenerTask2(addr2);
         opener2.execute();
@@ -80,37 +77,39 @@ public class Android_tcp_stream_testActivity extends Activity {
     			e.printStackTrace();
     		}
     		videoSocket = s;
+    		videoSocket.notifyAll();
     		return null;
     	}
     	
     }
 
     public void leftButtonListener(View v) {
-    	sender.execute('a');
+    	(new SendCommandTask()).execute('a');
     }
     
     public void upButtonListener(View v) {
-    	sender.execute('w');
+    	(new SendCommandTask()).execute('w');
     }
     
     public void downButtonListener(View v) {
-    	
+    	(new SendCommandTask()).execute('s');
     }
     
     public void rightButtonListener(View v) {
-    	
+    	(new SendCommandTask()).execute('d');
     }
     
     public void pauseButtonListener(View v) {
-    	sender.execute('p');
+    	//(new SendCommandTask()).execute('p');
     }
     
     public void stopButtonListener(View v) {
-    	
+    	(new SendCommandTask()).execute('p');
     }
     
     public void quitButtonListener(View v) {
-    	
+    	// ToDo
+    	finish();
 	}
 
     public class SendCommandTask extends AsyncTask<Character, Void, Boolean> {
@@ -120,9 +119,7 @@ public class Android_tcp_stream_testActivity extends Activity {
     	@Override
     	protected Boolean doInBackground(Character... params) {
     		try {
-    			if (nos == null) {
-    				nos = senderSocket.getOutputStream();
-    			}
+    			nos = senderSocket.getOutputStream();	
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -150,23 +147,42 @@ public class Android_tcp_stream_testActivity extends Activity {
     	
     }
     
-    public class GetVideoTask extends AsyncTask<Void, Void, Void> {
+    public class VideoFrame {
+    	
+    	public int row;
+    	public byte[] payload;
+    	
+    }
+    
+    public class GetVideoTask extends AsyncTask<Void, VideoFrame, Void> {
     	
     	InputStream nis;
     	
     	@Override
     	protected Void doInBackground(Void... params) {
     		try {
-    			if (nis == null) {
-    				nis = videoSocket.getInputStream();
-    			}
+    			videoSocket.wait();
+    			nis = videoSocket.getInputStream();
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     			return null;
-    		}
+    		} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
     		
+    		byte[] rowIdBuf = new byte[4];
+			byte[] rowDataBuf = new byte[640*3];
     		try {
+    			while(videoSocket.isConnected()) {
+    				nis.read(rowIdBuf, 0, 4);
+    				nis.read(rowDataBuf, 0, 640*3);
+    				VideoFrame vf = new VideoFrame();
+    				vf.row = Integer.parseInt(new String(rowIdBuf)); // big ToDo
+    				vf.payload = rowDataBuf.clone();
+    				this.publishProgress(vf);
+    			}
     			nis.read();
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
@@ -176,6 +192,11 @@ public class Android_tcp_stream_testActivity extends Activity {
     		
     		return null;
     		
+    	}
+    	
+    	@Override
+    	protected void onProgressUpdate(VideoFrame... frames) {
+    		Log.v("video", "would update canvas here");
     	}
     	
     }
