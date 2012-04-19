@@ -4,3 +4,4 @@
 **/*.apk
 **/bin/*
 tcp_server/server
+.metadata
