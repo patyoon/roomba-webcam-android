@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello App</string>
+    <string name="app_name">Android_tcp_stream_test</string>
+
+    <string name="quit">Quit</string>
+    <string name="left">Left</string>
+    <string name="right">Right</string>
+    <string name="up">Up</string>
+    <string name="down">Down</string>
+    <string name="pause">Pause Video</string>
+    <string name="stop">Stop</string>
+    <string name="ip">IP Address</string>
+    <string name="port">Port Number</string>
+    <string name="submit">Submit</string>
+    
+</resources>
