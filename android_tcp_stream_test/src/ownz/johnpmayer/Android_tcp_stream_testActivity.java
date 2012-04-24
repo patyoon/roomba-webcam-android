@@ -25,15 +25,14 @@ public class Android_tcp_stream_testActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
+        String ip = "158.130.106.127";
         
-        SocketAddress addr1 = new InetSocketAddress("158.130.104.218", 8001);
+        SocketAddress addr1 = new InetSocketAddress(ip, 8001);
         SenderSocketOpenerTask opener1 = new SenderSocketOpenerTask(addr1);
-        opener1.execute();
+        opener1.executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR);
         
-        
-        vt = new GetVideoTask(
-        new InetSocketAddress("158.130.104.218", 8002));
-        //vt.execute();
+        vt = new GetVideoTask(new InetSocketAddress(ip, 8002));
+        vt.executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR);
         
     }
     
@@ -62,27 +61,27 @@ public class Android_tcp_stream_testActivity extends Activity {
     }
     
     public void leftButtonListener(View v) {
-    	(new SendCommandTask()).execute('a');
+    	(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'a');
     }
     
     public void upButtonListener(View v) {
-    	(new SendCommandTask()).execute('w');
+    	(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'w');
     }
     
     public void downButtonListener(View v) {
-    	(new SendCommandTask()).execute('s');
+    	(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'s');
     }
     
     public void rightButtonListener(View v) {
-    	(new SendCommandTask()).execute('d');
+    	(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'d');
     }
     
     public void pauseButtonListener(View v) {
-    	//(new SendCommandTask()).execute('p');
+    	//(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'p');
     }
     
     public void stopButtonListener(View v) {
-    	(new SendCommandTask()).execute('p');
+    	(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'p');
     }
     
     public void quitButtonListener(View v) {
