@@ -9,15 +9,28 @@ import java.net.Socket;
 import java.net.SocketAddress;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 import android.view.View;
+import android.widget.ImageView;
 
 public class Android_tcp_stream_testActivity extends Activity {
     
+	ImageView drawingView;
 	Socket senderSocket;
 	GetVideoTask vt;
+	
+	static final int commandPort = 8001;
+	static final int videoPort = 8003;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -25,13 +38,18 @@ public class Android_tcp_stream_testActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        String ip = "158.130.106.127";
+        String ip = "158.130.104.5";
         
-        SocketAddress addr1 = new InetSocketAddress(ip, 8001);
+        // set up the drawing view
+        drawingView = (ImageView) findViewById(R.id.surface);
+        
+        // Set up socket connection for commands to roomba
+        SocketAddress addr1 = new InetSocketAddress(ip, commandPort);
         SenderSocketOpenerTask opener1 = new SenderSocketOpenerTask(addr1);
         opener1.executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR);
         
-        vt = new GetVideoTask(new InetSocketAddress(ip, 8002));
+        // Start up the video task
+        vt = new GetVideoTask(new InetSocketAddress(ip, videoPort));
         vt.executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR);
         
     }
@@ -96,6 +114,7 @@ public class Android_tcp_stream_testActivity extends Activity {
     	@Override
     	protected Boolean doInBackground(Character... params) {
     		
+    		
     		if (senderSocket == null) {
     			Log.v("send command do in back","null sender");
     			return false;
@@ -131,14 +150,7 @@ public class Android_tcp_stream_testActivity extends Activity {
     	
     }
     
-    public class VideoFrame {
-    	
-    	public int row;
-    	public byte[] payload;
-    	
-    }
-    
-    public class GetVideoTask extends AsyncTask<Void, VideoFrame, Void> {
+    public class GetVideoTask extends AsyncTask<Void, Bitmap, Void> {
     	
     	Socket videoSocket;
     	InputStream nis;
@@ -148,9 +160,12 @@ public class Android_tcp_stream_testActivity extends Activity {
     	public GetVideoTask(SocketAddress remote) {
 			this.remote = remote;
 		}
-
+    	
 		@Override
     	protected Void doInBackground(Void... params) {
+			
+			Bitmap mBitmap = Bitmap.createBitmap(320, 240, Bitmap.Config.RGB_565);
+    		
     		try {
     			videoSocket = new Socket();
     			videoSocket.connect(remote);
@@ -162,34 +177,42 @@ public class Android_tcp_stream_testActivity extends Activity {
     			return null;
     		}
     		
-    		//byte[] rowIdBuf = new byte[4];
+    		
+    		
 			byte[] rowDataBuf = new byte[640*3];
     		try {
     			while(videoSocket.isConnected()) {
-    				boolean skip = false;
-    				
-    				//nis.read(rowIdBuf, 0, 4);
     				
     				int rowId = dis.readInt();
-    				
-    						
-    				/*
-    				for (int i = 0; i < 4; i++) {
-    					if(rowIdBuf[i] < (byte)'0' || rowIdBuf[i] > (byte)'9') {
-    						rowIdBuf[i] = (byte)'\0';
-    					}
-    				}
-    				*/
-    						
+    					
     				nis.read(rowDataBuf, 0, 640*3);
     				
-    				//String rowIdString = new String(rowIdBuf);
-    				
-    				VideoFrame vf = new VideoFrame();
-    				vf.row = rowId;//Integer.parseInt(rowIdString); // big ToDo
-    				vf.payload = rowDataBuf.clone();
-    				
-    				this.publishProgress(vf);
+    	    		if (rowId >= mBitmap.getHeight() || rowId < 0) {
+    	    			Log.v("Got a bad rowId", Integer.toString(rowId));
+    	    			continue;
+    	    		}
+    	    		
+    	    		for (int col = 0; col < 320; col += 1) {
+    	    			
+    	    			int r, g, b;
+    	    			r = (int)rowDataBuf[3*col] & 0xff;
+    	    			g = (int)rowDataBuf[3*col+1] & 0xff;
+    	    			b = (int)rowDataBuf[3*col+2] & 0xff;
+    	    			
+    	    			/*
+    	    			Log.v("R",Integer.toString(r));
+    	    			Log.v("G",Integer.toString(g));
+    	    			Log.v("B",Integer.toString(b));
+    	    			*/
+    	    			
+    	    			int color = Color.argb(1,r,g,b);
+    	    			
+    	    			mBitmap.setPixel(col, rowId, color);
+    	    			
+    	    		}
+    	    		
+    	    		
+    				this.publishProgress(mBitmap);
     			}
     			nis.read();
     		} catch (IOException e) {
@@ -203,8 +226,13 @@ public class Android_tcp_stream_testActivity extends Activity {
     	}
     	
     	@Override
-    	protected void onProgressUpdate(VideoFrame... frames) {
-    		Log.v("video", "would update canvas here");
+    	protected void onProgressUpdate(Bitmap... frames) {
+    		
+    		//Log.v("progress", "updating for row");
+    		
+    		Bitmap b = frames[0];
+    		drawingView.setImageBitmap(b);
+    		
     	}
     	
     }
