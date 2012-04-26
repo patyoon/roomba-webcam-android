@@ -11,13 +11,13 @@
         android:layout_weight="0.56"
         android:orientation="vertical" >
 
-        <SurfaceView
+        <ImageView
             android:id="@+id/surface"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="320px"
+            android:layout_height="240px"
             android:layout_gravity="center"
             android:layout_weight="0.47" >
-        </SurfaceView>
+        </ImageView>
 
         <GridLayout
             android:id="@+id/gridLayout1"
@@ -49,6 +49,7 @@
                 android:layout_gravity="left"
                 android:layout_row="1"
                 android:layout_rowSpan="2"
+                android:onClick="stopButtonListener"
                 android:text="@string/stop" />
 
             <Button
