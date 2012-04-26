@@ -10,6 +10,7 @@
 #include <libfreenect_sync.h>
 #include <pthread.h>
 
+struct sockaddr_in echoserver;
 
 #define MAXPENDING 5    /* Max connection requests */
 #define BUFFSIZE 1
@@ -20,6 +21,7 @@ void Die(char *mess) {
 
 Roomba* roomba_obj;
 int clientsock;
+//int vidSock;
 
 void* PerformCommands(void*stuff) {
   char buffer;
@@ -34,32 +36,53 @@ void* PerformCommands(void*stuff) {
   }
 }
 
-#define W 640
-#define H 480
+#define REAL_W 640
+#define REAL_H 480
+
+#define CHUNK 8
+
+#define W (REAL_W / CHUNK)
+#define H (REAL_H / CHUNK)
+
+#define PAYLOAD W * 3
 
 void* SendVideo(void*stuff) {
+  
   printf("in send video\n");
+  
+  char* payload = calloc(PAYLOAD, sizeof(char));
   while(1) {
+    
+    printf("sending frame\n");
+    
+    int waitSize;
+    char wait;
     char* data;
     unsigned int timestamp;
-    freenect_sync_get_video((void**)(&data), &timestamp, 0, FREENECT_VIDEO_RGB);
-    int32_t i;
-    for (i = 0; i < H; i += 1) {
-      // send 3*W bytes of rgb data, offset by i * 3 * W
-      char* rowIdBuf = malloc(4 * sizeof(char));
-      int j;
-      char* rowId = (char*)&i;
-      for (j = 0; j < 4; j ++) {
-        rowIdBuf[3-j] = rowId[j];
-      }
-      if (send(clientsock, rowIdBuf, 4, 0) != 4) {
-	Die("Failed to deliver RGB header");
-      }
-      char* row = &data[i * 3 * W];
-      if (send(clientsock, row, 3*W, 0) != 3*W) {
-	Die("Failed to delivier RGB payload");
-      }
+    
+    if ((waitSize = recv(clientsock, &wait, 1, 0)) < 0) {
+      Die("Error waiting for client ready signal\n");
     }
+    
+    freenect_sync_get_video((void**)(&data), &timestamp, 0, FREENECT_VIDEO_RGB);
+    
+    int i, j;
+    for (i = 0; i < H; i += 1) {
+      
+      for (j = 0; j < W; j += 1) {
+        
+        payload[j*3]   = data[REAL_W * 3 * CHUNK * i + 3 * CHUNK * j];
+        payload[j*3+1] = data[REAL_W * 3 * CHUNK * i + 3 * CHUNK * j + 1];
+        payload[j*3+2] = data[REAL_W * 3 * CHUNK * i + 3 * CHUNK * j + 2];
+        
+      }
+      
+      if (send(clientsock, payload, PAYLOAD, 0) != PAYLOAD) {
+        Die("Error delivering RGB\n");
+      }
+      
+    }
+    
   }
 }
 
@@ -90,7 +113,7 @@ void HandleClient() {
 
 int main(int argc, char *argv[]) {
   int serversock;
-  struct sockaddr_in echoserver, echoclient;
+  struct sockaddr_in echoclient;
   
   if (argc != 3) {
     fprintf(stderr, "USAGE: echoserver <port> <serial_port>\n");
@@ -100,6 +123,10 @@ int main(int argc, char *argv[]) {
   /* Create Roomba struct */
 #ifndef MODE_VID
   roomba_obj = roomba_init(argv[2]);
+#endif
+
+#ifdef MODE_VID
+  //vidSock = socket(AF_INET, SOCK_DGRAM, 0);
 #endif
 
   /* Create the TCP socket */

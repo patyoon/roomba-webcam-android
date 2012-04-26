@@ -4,9 +4,16 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
+import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketAddress;
+import java.nio.Buffer;
+import java.nio.ByteBuffer;
+import java.util.Enumeration;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,7 +37,7 @@ public class Android_tcp_stream_testActivity extends Activity {
 	GetVideoTask vt;
 	
 	static final int commandPort = 8001;
-	static final int videoPort = 8003;
+	static final int videoPort = 8002;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -154,8 +161,11 @@ public class Android_tcp_stream_testActivity extends Activity {
     	
     	Socket videoSocket;
     	InputStream nis;
+    	OutputStream nos;
     	DataInputStream dis;
     	SocketAddress remote;
+    	//InetAddress me;
+    	//DatagramSocket udpStreamSocket;
     	
     	public GetVideoTask(SocketAddress remote) {
 			this.remote = remote;
@@ -163,55 +173,105 @@ public class Android_tcp_stream_testActivity extends Activity {
     	
 		@Override
     	protected Void doInBackground(Void... params) {
-			
-			Bitmap mBitmap = Bitmap.createBitmap(320, 240, Bitmap.Config.RGB_565);
-    		
+			    		
     		try {
     			videoSocket = new Socket();
     			videoSocket.connect(remote);
     			nis = videoSocket.getInputStream();
-    			dis = new DataInputStream(nis);
+    			
+    			
+    			nos = videoSocket.getOutputStream();
+    			//dis = new DataInputStream(nis);
+    			/*
+    			//InetAddress me;
+    			
+    			for (Enumeration<NetworkInterface> en = NetworkInterface.getNetworkInterfaces(); en.hasMoreElements();) {
+    	            NetworkInterface intf = en.nextElement();
+    	            for (Enumeration<InetAddress> enumIpAddr = intf.getInetAddresses(); enumIpAddr.hasMoreElements();) {
+    	                InetAddress inetAddress = enumIpAddr.nextElement();
+    	                if (!inetAddress.isLoopbackAddress()) {
+    	                    me = inetAddress;
+    	                }
+    	            }
+    	        }
+    			
+    			udpStreamSocket = new DatagramSocket(9999);
+    			
+    			
+    			String host = me.getHostAddress().toString();
+    			
+    			Log.v("in background my ip", host);
+    			
+    			nos.write(host.getBytes(), 0, host.length());
+    			*/
+    			
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
     			return null;
     		}
     		
+    		int chunk = 8;
+    		int W = 640 / chunk;
+    		int H = 480 / chunk;
+    		int PAYLOAD = 3*W;
     		
+    		Bitmap mBitmap = Bitmap.createBitmap(W, H, Bitmap.Config.RGB_565);
+    		//Buffer mBuffer = ByteBuffer.allocate(PAYLOAD);
+    		//byte[] mByteArray = (byte[]) mBuffer.array();
     		
-			byte[] rowDataBuf = new byte[640*3];
+			//byte[] dataBuf = new byte[W*3];
+			//byte[] rowIdBuf = new byte[1];
+    		
+    		byte[] rowDataBuf = new byte[PAYLOAD];
+    		
+    		DatagramPacket pack = new DatagramPacket(rowDataBuf, PAYLOAD);
+    		
     		try {
     			while(videoSocket.isConnected()) {
     				
-    				int rowId = dis.readInt();
-    					
-    				nis.read(rowDataBuf, 0, 640*3);
+    				byte[] buf = new byte[1];
+    				buf[0] = 'z';
+    				nos.write(buf);
     				
-    	    		if (rowId >= mBitmap.getHeight() || rowId < 0) {
+    				//udpStreamSocket.receive(pack);
+    				
+    				/*
+    				nis.read(rowIdBuf, 0, 1);
+    				int rowId = (int)(rowIdBuf[0] & 0xFF);
+    				*/
+    				
+    				//int size = 
+    				//mBitmap.copyPixelsFromBuffer(mBuffer);
+    				
+    				//
+    				
+    				/*
+    	    		if (rowId >= H || rowId < 0) {
     	    			Log.v("Got a bad rowId", Integer.toString(rowId));
     	    			continue;
     	    		}
-    	    		
-    	    		for (int col = 0; col < 320; col += 1) {
-    	    			
-    	    			int r, g, b;
-    	    			r = (int)rowDataBuf[3*col] & 0xff;
-    	    			g = (int)rowDataBuf[3*col+1] & 0xff;
-    	    			b = (int)rowDataBuf[3*col+2] & 0xff;
-    	    			
-    	    			/*
-    	    			Log.v("R",Integer.toString(r));
-    	    			Log.v("G",Integer.toString(g));
-    	    			Log.v("B",Integer.toString(b));
-    	    			*/
-    	    			
-    	    			int color = Color.argb(1,r,g,b);
-    	    			
-    	    			mBitmap.setPixel(col, rowId, color);
-    	    			
+    	    		*/
+    				    				
+    				for (int row = 0; row < H; row += 1) {
+    					
+    					int size = nis.read(rowDataBuf, 0, PAYLOAD);
+    					Log.v("vid background","got row " + Integer.toString(row) 
+    							+ " frame data: " + Integer.toString(size));
+    					
+    					for (int col = 0; col < W; col += 1) {
+    						
+    						int r, g, b;
+    						r = (int)rowDataBuf[3*col] & 0xff;
+    						g = (int)rowDataBuf[3*col+1] & 0xff;
+    						b = (int)rowDataBuf[3*col+2] & 0xff;
+    						
+    						int color = Color.argb(1,r,g,b);
+    						
+    						mBitmap.setPixel(col, row, color);
+    					}
     	    		}
-    	    		
-    	    		
+    	    		    				
     				this.publishProgress(mBitmap);
     			}
     			nis.read();
@@ -228,7 +288,7 @@ public class Android_tcp_stream_testActivity extends Activity {
     	@Override
     	protected void onProgressUpdate(Bitmap... frames) {
     		
-    		//Log.v("progress", "updating for row");
+    		Log.v("progress", "updating for row");
     		
     		Bitmap b = frames[0];
     		drawingView.setImageBitmap(b);
