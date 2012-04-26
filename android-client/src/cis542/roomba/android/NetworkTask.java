@@ -6,11 +6,12 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketAddress;
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class NetworkTask extends AsyncTask<Void, byte[], Boolean> {
+public class NetworkTask extends AsyncTask<String, byte[], Boolean> {
 
 	Socket nsocket; //Network Socket
 	InputStream nis; //Network Input Stream
@@ -20,15 +21,18 @@ public class NetworkTask extends AsyncTask<Void, byte[], Boolean> {
 	protected void onPreExecute() {
 		Log.i("AsyncTask", "onPreExecute");
 	}
-
+	
 	@Override
-	protected Boolean doInBackground(Void... params) { //This runs on a different thread
+	protected Boolean doInBackground(String... params) { //This runs on a different thread
 		boolean result = false;
 		try {
+			int count = params.length;
+			if (count != 2)
+				return false;
 			Log.i("AsyncTask", "doInBackground: Creating socket");
-			SocketAddress sockaddr = new InetSocketAddress("192.168.1.1", 80);
+			SocketAddress sockaddr = new InetSocketAddress(params[0], Integer.parseInt(params[1]));
 			nsocket = new Socket();
-			nsocket.connect(sockaddr, 5000); //10 second connection timeout
+			nsocket.connect(sockaddr); //10 second connection timeout
 			if (nsocket.isConnected()) { 
 				nis = nsocket.getInputStream();
 				nos = nsocket.getOutputStream();
@@ -37,9 +41,9 @@ public class NetworkTask extends AsyncTask<Void, byte[], Boolean> {
 				byte[] buffer = new byte[4096];
 				int read = nis.read(buffer, 0, 4096); //This is blocking
 				while(read != -1){
-					byte[] tempdata = new byte[read];
-					System.arraycopy(buffer, 0, tempdata, 0, read);
-					publishProgress(tempdata);
+					byte[] imagedata = new byte[read];
+					System.arraycopy(buffer, 0, imagedata, 0, read);
+					publishProgress(imagedata);
 					Log.i("AsyncTask", "doInBackground: Got some data");
 					read = nis.read(buffer, 0, 4096); //This is blocking
 				}

@@ -12,7 +12,8 @@
     <string name="pause">Pause Video</string>
     <string name="stop">Stop</string>
     <string name="ip">IP Address</string>
-    <string name="port">Port Number</string>
+    <string name="portcom">Command Port</string>
     <string name="submit">Submit</string>
+    <string name="portvid">Video Port</string>
     
 </resources>

@@ -4,29 +4,16 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.NetworkInterface;
 import java.net.Socket;
 import java.net.SocketAddress;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.util.Enumeration;
 
 import android.app.Activity;
-import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.util.Log;
-import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -36,8 +23,8 @@ public class Android_tcp_stream_testActivity extends Activity {
 	Socket senderSocket;
 	GetVideoTask vt;
 	
-	static final int commandPort = 8001;
-	static final int videoPort = 8002;
+	static  int commandPort = 8001;
+	static  int videoPort = 8002;
 	
 	/** Called when the activity is first created. */
     @Override
@@ -45,7 +32,15 @@ public class Android_tcp_stream_testActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        String ip = "192.168.1.3";
+        Bundle bundle = this.getIntent().getExtras();
+		String ip =bundle.getString("ip");
+		commandPort = Integer.parseInt(bundle.getString("portcom"));
+		videoPort = Integer.parseInt(bundle.getString("portvid"));
+
+		Log.d("commandPort", Integer.toString(commandPort));
+		Log.d("videoPort", Integer.toString(videoPort));
+		Log.d("ip", ip);
+        //String ip = "192.168.1.3";
         
         // set up the drawing view
         drawingView = (ImageView) findViewById(R.id.surface);
