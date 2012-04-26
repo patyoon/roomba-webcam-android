@@ -45,7 +45,7 @@ public class Android_tcp_stream_testActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
-        String ip = "158.130.104.5";
+        String ip = "192.168.1.3";
         
         // set up the drawing view
         drawingView = (ImageView) findViewById(R.id.surface);
@@ -178,8 +178,7 @@ public class Android_tcp_stream_testActivity extends Activity {
     			videoSocket = new Socket();
     			videoSocket.connect(remote);
     			nis = videoSocket.getInputStream();
-    			
-    			
+    			    			
     			nos = videoSocket.getOutputStream();
     			//dis = new DataInputStream(nis);
     			/*
@@ -225,14 +224,16 @@ public class Android_tcp_stream_testActivity extends Activity {
     		
     		byte[] rowDataBuf = new byte[PAYLOAD];
     		
-    		DatagramPacket pack = new DatagramPacket(rowDataBuf, PAYLOAD);
+    		//DatagramPacket pack = new DatagramPacket(rowDataBuf, PAYLOAD);
     		
     		try {
     			while(videoSocket.isConnected()) {
     				
+    				
     				byte[] buf = new byte[1];
     				buf[0] = 'z';
     				nos.write(buf);
+    				
     				
     				//udpStreamSocket.receive(pack);
     				
