@@ -91,15 +91,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" >
 
-            <Button
-                android:id="@+id/pauseButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onClick="pauseButtonListener"
-                                                            android:minWidth="160px"
-                
-                android:text="@string/pause" />
-
+           
             <Button
                 android:id="@+id/quitButton"
                 android:layout_width="wrap_content"
