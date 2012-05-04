@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-
     <LinearLayout
         android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
@@ -109,7 +108,6 @@
                 
                 android:onClick="quitButtonListener"
                 android:text="@string/quit" />
-            
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>
