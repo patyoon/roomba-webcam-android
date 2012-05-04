@@ -2,7 +2,7 @@
 <resources>
 
     <string name="hello">Hello App</string>
-    <string name="app_name">Android_tcp_stream_test</string>
+    <string name="app_name">RC Roomba for Android</string>
 
     <string name="quit">Quit</string>
     <string name="left">Left</string>

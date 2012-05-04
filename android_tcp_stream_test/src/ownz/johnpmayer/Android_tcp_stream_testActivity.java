@@ -22,6 +22,7 @@ import android.view.Display;
 import android.view.Surface;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 
 public class Android_tcp_stream_testActivity extends Activity implements SensorEventListener 
@@ -40,6 +41,8 @@ public class Android_tcp_stream_testActivity extends Activity implements SensorE
 
 	static  int commandPort = 8001;
 	static  int videoPort = 8002;
+	
+	Button leftButton, rightButton, upButton, downButton, stopButton;
 	
 	//x, y, z value for sensor
 	float mLastX, mLastY, mLastZ; 
@@ -92,6 +95,15 @@ public class Android_tcp_stream_testActivity extends Activity implements SensorE
 		mWindowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 		mDisplay = mWindowManager.getDefaultDisplay();
 		mInitialized = false;
+		
+		//get buttons from layout
+		
+		leftButton = (Button) findViewById(R.id.leftButton);
+		upButton = (Button) findViewById(R.id.upButton);
+		rightButton = (Button) findViewById(R.id.rightButton);
+		downButton = (Button) findViewById(R.id.downButton);
+		stopButton = (Button) findViewById(R.id.stopButton);
+
 	}
 
 	public class SenderSocketOpenerTask extends AsyncTask<Void, Void, Void> {
@@ -119,27 +131,28 @@ public class Android_tcp_stream_testActivity extends Activity implements SensorE
 	}
 
 	public void leftButtonListener(View v) {
-		(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'a');
+		sendCommandToExecutor('a');
 	}
 
 	public void upButtonListener(View v) {
-		(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'w');
+		sendCommandToExecutor('w');
 	}
 
 	public void downButtonListener(View v) {
-		(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'s');
+		sendCommandToExecutor('s');
 	}
 
 	public void rightButtonListener(View v) {
-		(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'d');
+		sendCommandToExecutor('d');
 	}
 
-	public void pauseButtonListener(View v) {
-		//(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'p');
+	private void sendCommandToExecutor(char c) {
+		(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,c);
+		
 	}
-
+	
 	public void stopButtonListener(View v) {
-		(new SendCommandTask()).executeOnExecutor(android.os.AsyncTask.THREAD_POOL_EXECUTOR,'p');
+		sendCommandToExecutor('p');
 	}
 
 	public void quitButtonListener(View v) {
@@ -345,31 +358,62 @@ public class Android_tcp_stream_testActivity extends Activity implements SensorE
 		float x = event.values[0];
 		float y = event.values[1];
 		float z = event.values[2];
-
+	
 		if (!mInitialized) {
 			mLastX = x;
 			mLastY = y;
 			mLastZ = z;
 			mInitialized = true;
 		} else {
-			float deltaX = Math.abs(mLastX - x);
-			float deltaY = Math.abs(mLastY - y);
-			float deltaZ = Math.abs(mLastZ - z);
-			if (deltaX < NOISE) deltaX = (float)0.0;
-			if (deltaY < NOISE) deltaY = (float)0.0;
-			if (deltaZ < NOISE) deltaZ = (float)0.0;
+			float deltaX = x;
+			float deltaY = y;
+			float deltaZ = z;
+						
+			if (Math.abs(deltaX) < NOISE) deltaX = (float)0.0;
+			if (Math.abs(deltaY) < NOISE) deltaY = (float)0.0;
+			if (Math.abs(deltaZ) < NOISE) deltaZ = (float)0.0;
 			mLastX = x;
 			mLastY = y;
 			mLastZ = z;
-			
 			if (deltaX > deltaY) {
 				//move left right
+				if (deltaX > 0) {
+					//move left					
+					resetButtonColors();
+					sendCommandToExecutor('a');
+					Log.d("onSensorChanged", "left");
+					//leftButton.setHintTextColor(Color.YELLOW);
+					leftButton.setTextColor(Color.YELLOW);
+					//leftButton.setTextSize(15);
+				} else {
+					resetButtonColors();
+					sendCommandToExecutor('w');
+					Log.d("onSensorChanged", "up");
+					upButton.setTextColor(Color.YELLOW);
+
+				}
 			} else if (deltaY > deltaX) {
+				if (deltaY > 0) {
+					resetButtonColors();
+					Log.d("onSensorChanged", "down");
+					sendCommandToExecutor('s');
+					downButton.setTextColor(Color.YELLOW);
+				} else {
+					resetButtonColors();
+					sendCommandToExecutor('d');
+					Log.d("onSensorChanged", "right");
+					rightButton.setTextColor(Color.YELLOW);
+				}
 				// move up down
 			} else {
+				// stop the roomba
+				resetButtonColors();
+				sendCommandToExecutor('p');
+				Log.d("onSensorChanged", "stop");
+				stopButton.setTextColor(Color.YELLOW);
 			}
 		}
-
+		/*
 		if(event.sensor.getType()==Sensor.TYPE_ACCELEROMETER){
 			switch (mDisplay.getRotation()) {
 			case Surface.ROTATION_0:
@@ -396,8 +440,16 @@ public class Android_tcp_stream_testActivity extends Activity implements SensorE
 		}
 		Log.d("mSensorX", Float.toString(mSensorX));
 		Log.d("mSensorY", Float.toString(mSensorY));
+		*/
 	}
 
+	void resetButtonColors() {
+		leftButton.setTextColor(Color.WHITE);
+		upButton.setTextColor(Color.WHITE);
+		downButton.setTextColor(Color.WHITE);
+		rightButton.setTextColor(Color.WHITE);
+		stopButton.setTextColor(Color.WHITE);
+	}
 	
 	@Override
 	protected void onResume() {
