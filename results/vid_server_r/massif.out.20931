@@ -1,0 +1,1099 @@
+desc: (none)
+cmd: ./vid_server 8002 /dev/null
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=102829530
+mem_heap_B=532
+mem_heap_extra_B=36
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=2
+#-----------
+time=184615155
+mem_heap_B=3574168
+mem_heap_extra_B=840
+mem_stacks_B=0
+heap_tree=peak
+n6: 3574168 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10648 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=3
+#-----------
+time=286425515
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=369869030
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=436022279
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=519492592
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=7
+#-----------
+time=602768868
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=653013568
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=9
+#-----------
+time=736323612
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=803079465
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=918975690
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=1018854589
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=13
+#-----------
+time=1085195444
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=1168930916
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=1252230748
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=1352052672
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=17
+#-----------
+time=1418870429
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=1518782786
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=19
+#-----------
+time=1602030036
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=1734316572
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=1817468796
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=22
+#-----------
+time=1934185178
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=2033581729
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=2150171186
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=2233257948
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=2299780606
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=2415934767
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=2482866906
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=2615482599
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=30
+#-----------
+time=2731659329
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=2814538672
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=2881331330
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=2978348880
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=3027339966
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=35
+#-----------
+time=3124357532
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=3173112262
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=3270785878
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=3353334003
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=3419937099
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=3553295464
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=3669415251
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=3752267401
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=3885609430
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=4018734273
+mem_heap_B=3573988
+mem_heap_extra_B=804
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=4085543453
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=4185623296
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=4301736355
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=4401610725
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=4501866203
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=50
+#-----------
+time=4551087795
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=4600894793
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=52
+#-----------
+time=4651522645
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=53
+#-----------
+time=4701755754
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=54
+#-----------
+time=4751752558
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=55
+#-----------
+time=4801766098
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=56
+#-----------
+time=4851773831
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=57
+#-----------
+time=4901978152
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=58
+#-----------
+time=4951805600
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=59
+#-----------
+time=5002095247
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=60
+#-----------
+time=5051673209
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=61
+#-----------
+time=5101721657
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=62
+#-----------
+time=5151607897
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=63
+#-----------
+time=5202208556
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=64
+#-----------
+time=5252508411
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=65
+#-----------
+time=5302561695
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=66
+#-----------
+time=5352375376
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=67
+#-----------
+time=5402675177
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=68
+#-----------
+time=5452728461
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=69
+#-----------
+time=5502932039
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=70
+#-----------
+time=5552509993
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=71
+#-----------
+time=5602575861
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=72
+#-----------
+time=5651797445
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=73
+#-----------
+time=5701375351
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=74
+#-----------
+time=5751493680
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=75
+#-----------
+time=5801502557
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=76
+#-----------
+time=5851138017
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=77
+#-----------
+time=5901514195
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=78
+#-----------
+time=5951338064
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=79
+#-----------
+time=6001169979
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=80
+#-----------
+time=6050983799
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=81
+#-----------
+time=6100561761
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=82
+#-----------
+time=6150374739
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=83
+#-----------
+time=6199596283
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=84
+#-----------
+time=6249174149
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=85
+#-----------
+time=6298986619
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=86
+#-----------
+time=6348920855
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=87
+#-----------
+time=6399191766
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=88
+#-----------
+time=6448884389
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=89
+#-----------
+time=6498462247
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=detailed
+n6: 3573752 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n1: 921600 0x404623F: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404624E: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 921600 0x404625D: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+  n1: 921600 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+   n1: 921600 0x41F4D4A: start_thread (pthread_create.c:308)
+    n0: 921600 0x4133ACC: clone (clone.S:130)
+ n1: 491520 0x420C948: fnusb_start_iso (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 491520 0x420BCF6: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 491520 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 491520 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 491520 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 491520 0x4133ACC: clone (clone.S:130)
+ n1: 307200 0x420B4F9: ??? (in /usr/lib/libfreenect.so.0.0.1)
+  n1: 307200 0x420BED5: freenect_start_video (in /usr/lib/libfreenect.so.0.0.1)
+   n1: 307200 0x404629A: ??? (in /usr/lib/libfreenect_sync.so.0.0.1)
+    n1: 307200 0x4046509: freenect_sync_get_video (in /usr/lib/libfreenect_sync.so.0.0.1)
+     n1: 307200 0x41F4D4A: start_thread (pthread_create.c:308)
+      n0: 307200 0x4133ACC: clone (clone.S:130)
+ n0: 10232 in 23 places, all below massif's threshold (01.00%)
+#-----------
+snapshot=90
+#-----------
+time=6548040153
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=91
+#-----------
+time=6597863188
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=92
+#-----------
+time=6648043427
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=93
+#-----------
+time=6697501251
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=94
+#-----------
+time=6747324559
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=95
+#-----------
+time=6796902473
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=96
+#-----------
+time=6846836709
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=97
+#-----------
+time=6896551543
+mem_heap_B=3573752
+mem_heap_extra_B=792
+mem_stacks_B=0
+heap_tree=empty
