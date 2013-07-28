@@ -1,4 +1,4 @@
-roomba-webcam-android
+# roomba-webcam-android
 =====================
 
 This was CIS 542 Embedded Systems course final project in Spring 2012. The project was done together with John Mayer.
@@ -48,7 +48,6 @@ progress update is reported to the UI thread. The progress callback
 simply updates the screen with the most recent version of the bitmap
 in memory.
   
-
 ### Command Service 
 ----------------------
 
@@ -65,13 +64,19 @@ access to a set of commands such as `roomba_forward`, which, for
 example, sends 3 bytes to a serial port we define at program
 start. The following table describes the translation:
 
-|TCP character |  Libary call|  
-|    ---------------+-----------------|
-|  w |  roomba_forward   |
-|  a |  roomba_left  |
-|  s |  roomba_right |
-|  d |  roomba_backward|  
-|  p |  roomba_stop  |
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<tbody>
+<tr><td class="left">TCP character</td><td class="left">Libary call</td></tr>
+<tr><td class="left">---------------</td><td class="left">-----------------</td></tr>
+<tr><td class="left">w</td><td class="left">roomba<sub>forward</sub></td></tr>
+<tr><td class="left">a</td><td class="left">roomba<sub>left</sub></td></tr>
+<tr><td class="left">s</td><td class="left">roomba<sub>right</sub></td></tr>
+<tr><td class="left">d</td><td class="left">roomba<sub>backward</sub></td></tr>
+<tr><td class="left">p</td><td class="left">roomba<sub>stop</sub></td></tr>
+</tbody>
+</table>
 
 
 ### Video Service 
@@ -112,12 +117,12 @@ roomba battery. Boot up the beagleboard (Ubuntu)
 Using screen, tmux, or unix job management (& to background task),
 run the following commands:
 
-    com_server /dev/ttyUSB0 8001`
+    com_server /dev/ttyUSB0 8001
 
 This starts a command service process, attached to the serial port
 at /dev/ttyUSB0, and bound to the tcp port 8001
 
-    vid_server /dev/null 8002`
+    vid_server /dev/null 8002
 
 This starts a video service process, bound to the tcp port 8001
 
