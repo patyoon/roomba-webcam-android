@@ -70,14 +70,13 @@ start. The following table describes the translation:
 <tbody>
 <tr><td class="left">TCP character</td><td class="left">Libary call</td></tr>
 <tr><td class="left">---------------</td><td class="left">-----------------</td></tr>
-<tr><td class="left">w</td><td class="left">roomba<sub>forward</sub></td></tr>
-<tr><td class="left">a</td><td class="left">roomba<sub>left</sub></td></tr>
-<tr><td class="left">s</td><td class="left">roomba<sub>right</sub></td></tr>
-<tr><td class="left">d</td><td class="left">roomba<sub>backward</sub></td></tr>
-<tr><td class="left">p</td><td class="left">roomba<sub>stop</sub></td></tr>
+<tr><td class="left">w</td><td class="left">roomba_forward</td></tr>
+<tr><td class="left">a</td><td class="left">roomba_left</td></tr>
+<tr><td class="left">s</td><td class="left">roomba_right</td></tr>
+<tr><td class="left">d</td><td class="left">roomba_backward</td></tr>
+<tr><td class="left">p</td><td class="left">roomba_stop</td></tr>
 </tbody>
 </table>
-
 
 ### Video Service 
 --------------------
